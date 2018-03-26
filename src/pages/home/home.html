@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      小双的生理期
+      小双的专属app
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -11,25 +11,25 @@
     <ion-list-header>
       每月日期
     </ion-list-header>
-    <ion-item *ngFor="let item of menstrualList">
-      <p>日期：{{item.dateObj | date:"yyyy-MM-dd"}}</p>
-      <p>距上次天数：{{item.cycle}}</p>
+    <ion-item *ngFor="let item of menstrualList" class="item-background">
+      <p>日期：<span class="color">{{item.dateObj | date:"yyyy-MM-dd"}}</span></p>
+      <p>距上次天数：<span class="color">{{item.cycle}}</span></p>
       <button ion-button item-end (click)="deleteMenstrual(item)">删除</button>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item-background">
       <ion-label>添加日期</ion-label>
-      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="newMenstrual"></ion-datetime>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="newMenstrual" cancelText="取消" doneText="确定"></ion-datetime>
       <button ion-button item-end [disabled]="!newMenstrual" (click)="addMenstrual()">添加</button>
     </ion-item>
   </ion-list>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
       平均周期：
-      <span>{{averageCycle}}</span> 天
+      <span>{{averageCycle | number:"1.0-0"}}</span> 天
     </ion-title>
   </ion-toolbar>
 </ion-footer>
