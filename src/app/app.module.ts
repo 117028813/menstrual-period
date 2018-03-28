@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DataProvider } from '../providers/data/data';
+import { CalendarModule } from 'ion2-calendar';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DataProvider } from '../providers/data/data';
     HttpClientModule,
     IonicModule.forRoot(MyApp, {
       mode: 'ios'
-    })
+    }),
+    CalendarModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

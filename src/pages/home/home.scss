@@ -1,13 +1,46 @@
-ion-content {
-  .scroll-content {
-    background: url('../assets/imgs/cat.png') center/cover no-repeat;
-    .item-background {
-      background-color: transparent;
-    }
-    ion-item {
-      .color {
-        color: #fff;
+page-home {
+  ion-content {
+    .scroll-content {
+      background: url('../assets/imgs/cat.png') center/cover no-repeat;
+      .item-background {
+        background-color: transparent;
+      }
+      ion-item {
+        .color {
+          color: #fff;
+        }
       }
     }
+
+    .btn-group {
+      display: flex;
+      button {
+        flex: 1;
+      }
+    }
+  }
+}
+
+.calendar {
+  button[disabled] {
+    opacity: .2;
+  }
+  .days-btn:not([disabled]) {
+    background-color: #d0ffc9;
+    color: #187917;
+  }
+}
+
+.menstrual {
+  background-color: #ffdba4 !important;
+  p {
+    color: #e55500 !important;
+  }
+}
+
+.dangerous {
+  background-color: #ffcccc !important;
+  p {
+    color: #dd000d !important;
   }
 }

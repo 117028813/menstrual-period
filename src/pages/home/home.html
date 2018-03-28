@@ -17,12 +17,18 @@
       <button ion-button item-end (click)="deleteMenstrual(item)">删除</button>
     </ion-item>
 
-    <ion-item class="item-background">
+    <!-- <ion-item class="item-background">
       <ion-label>添加日期</ion-label>
       <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="newMenstrual" cancelText="取消" doneText="确定"></ion-datetime>
       <button ion-button item-end [disabled]="!newMenstrual" (click)="addMenstrual()">添加</button>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
+
+  <div class="btn-group">
+    <button ion-button outline (click)="addMenstrual()">添加日期</button>
+    <button [disabled]="!seeCalendarButton" ion-button outline (click)="openCalendar()">查看日历</button>
+  </div>
+  
 </ion-content>
 
 <ion-footer>
