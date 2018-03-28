@@ -62,7 +62,7 @@ export class HomePage {
     })
     calendar.present()
     calendar.onDidDismiss(date => {
-      if (!date) {
+      if (!date || this.menstrualList.some(val => val.date === date.time)) {
         return
       }
       this.menstrualList.push({
