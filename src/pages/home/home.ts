@@ -10,7 +10,6 @@ import { CalendarModal, CalendarModalOptions, DayConfig } from 'ion2-calendar';
 export class HomePage {
 
   menstrualList
-  newMenstrual
   averageCycle
   day2Millisecond = 24 * 60 * 60 * 1000
   seeCalendarButton = true
