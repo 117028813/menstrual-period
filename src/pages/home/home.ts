@@ -54,6 +54,7 @@ export class HomePage {
       weekStart: 1,
       closeLabel: '取消',
       doneLabel: '确定',
+      defaultScrollTo: new Date(),
       from: new Date(2018, 0, 1),
       to: new Date()
     }
