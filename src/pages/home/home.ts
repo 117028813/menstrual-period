@@ -34,19 +34,6 @@ export class HomePage {
   }
 
   addMenstrual() {
-    // this.menstrualList.push({
-    //   date: new Date(this.newMenstrual).getTime(),
-    //   dateObj: new Date(this.newMenstrual)
-    // })
-    // this.sortMenstrualList()
-    // this.computeMenstrualCycle()
-    // this.computeAverageCycle()
-    // this.dataService.addMenstrual({
-    //   date: new Date(this.newMenstrual).getTime()
-    // })
-    // this.newMenstrual = ''
-    // this.seeCalendarButton = this.menstrualList.length ? true : false
-
     const options: CalendarModalOptions = {
       title: '添加日期',
       monthFormat: 'YYYY年MM月',
