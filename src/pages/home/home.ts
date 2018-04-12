@@ -22,7 +22,7 @@ export class HomePage {
   ) {}
 
   ionViewDidLoad() {
-    this.menstrualList = JSON.parse(this.dataService.getMenstrual()) || []
+    this.menstrualList = this.dataService.getMenstrual() || []
     this.menstrualList.forEach(val => {
       val.dateObj = new Date(val.date)
     })

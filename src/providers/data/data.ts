@@ -17,7 +17,7 @@ export class DataProvider {
   }
 
   getMenstrual() {
-    return localStorage.getItem('menstrual')
+    return JSON.parse(localStorage.getItem('menstrual'))
   }
 
   addMenstrual(data) {
