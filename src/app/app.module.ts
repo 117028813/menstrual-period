@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DataProvider } from '../providers/data/data';
 import { CalendarModule } from 'ion2-calendar';
+import { JPush } from "@jiguang-ionic/jpush";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CalendarModule } from 'ion2-calendar';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DataProvider
+    DataProvider,
+    JPush
   ]
 })
 export class AppModule {}

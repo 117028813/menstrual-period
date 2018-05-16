@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController, AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { CalendarModal, CalendarModalOptions, DayConfig } from 'ion2-calendar';
+import { JPush } from '@jiguang-ionic/jpush';
 
 @Component({
   selector: 'page-home',
@@ -13,15 +14,37 @@ export class HomePage {
   averageCycle
   day2Millisecond = 24 * 60 * 60 * 1000
   seeCalendarButton = true
+  notification
+  registrationId
 
   constructor(
     public navCtrl: NavController,
     private alertCtrl: AlertController,
     private modalCtrl: ModalController,
-    private dataService: DataProvider
+    private dataService: DataProvider,
+    private jpush: JPush
   ) {}
 
   ionViewDidLoad() {
+    this.jpush.getRegistrationID().then(id => this.registrationId = id).catch(err => console.log(err))
+    document.addEventListener('jpush.receiveNotification', (event: any) => {      
+      this.notification = Number.parseInt(event.alert)      
+      if (typeof(this.notification) === 'number') {
+        if (this.menstrualList.some(val => val.date === this.notification)) {          
+          return false
+        }
+        this.menstrualList.push({
+          date: this.notification,
+          dateObj: new Date(this.notification)
+        })        
+        this.dataService.addMenstrual({date: this.notification})
+        this.sortMenstrualList()
+        this.computeMenstrualCycle()
+        this.computeAverageCycle()
+        this.seeCalendarButton = this.menstrualList.length ? true : false
+      }
+    })
+
     this.menstrualList = this.dataService.getMenstrual() || []
     this.menstrualList.forEach(val => {
       val.dateObj = new Date(val.date)
@@ -105,7 +128,16 @@ export class HomePage {
         cycleAmount += val.cycle
       }
     })
-    if (this.menstrualList.length > 1) {
+    if (this.menstrualList.length >= 3) {
+      console.log(this.menstrualList)
+      const cycleList = this.menstrualList.filter(item => item.cycle).map(item => item.cycle)
+      console.log(cycleList)
+      const maxCycle = Math.max(...cycleList)
+      const minCycle = Math.min(...cycleList)
+      console.log(maxCycle, minCycle)
+      this.averageCycle = (cycleAmount - maxCycle - minCycle) / (this.menstrualList.length - 1 - 2)
+      console.log(this.averageCycle)
+    } else if (this.menstrualList.length > 1) {
       this.averageCycle = cycleAmount / (this.menstrualList.length - 1)
     } else {
       this.averageCycle = 28
